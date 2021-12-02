@@ -1,0 +1,440 @@
+﻿@model TMS.Models.ChallanSearchModel
+@{
+    ViewBag.Title = "challanlist";
+    Layout = "~/Views/Shared/TSLayout.cshtml";
+}
+
+<h2></h2>
+
+<style>
+    .pbold {
+        font-weight: 600;
+        color: black;
+    }
+
+    .tdwidth {
+        width: 100% !important;
+    }
+
+    .tdwidt1 {
+        width: 54% !important;
+    }
+
+    @@media (max-width:576px) {
+        .mts {
+            margin-top: 0px !important;
+        }
+    }
+
+    .mts {
+        margin-top: 28px;
+    }
+
+    label {
+        color: #212121;
+        font-weight: 600 !important;
+    }
+
+    a {
+        color: #e0ba00;
+    }
+
+    .rules {
+        color: #b56800 !important;
+        font-weight: 700;
+    }
+
+    @@media (min-width:576px) {
+        .modal-dialog1 {
+            max-width: 800px;
+            margin: 1.75rem auto
+        }
+    }
+
+    .modaloverflow {
+        height: 600px;
+        overflow-y: auto;
+    }
+
+    table.dataTable thead > tr > th {
+        color: #fff;
+        background-color: #223035;
+    }
+
+    .table th {
+        padding: 7px !important;
+    }
+
+    .form-control1 {
+        border: 1px solid #f11111 !important;
+    }
+
+    .btn1 {
+        padding: 2px 6px;
+    }
+
+
+    .btn-group {
+        box-shadow: none;
+    }
+
+        .btn-group > .btn-group:not(:first-child) > .btn, .btn-group > .btn:not(:first-child) {
+            border-top-left-radius: .25rem;
+            border-bottom-left-radius: .25rem;
+        }
+
+        .btn-group > .btn-group:not(:last-child) > .btn, .btn-group > .btn:not(:last-child):not(.dropdown-toggle) {
+            border-top-right-radius: .25rem;
+            border-bottom-right-radius: .25rem;
+        }
+</style>
+<div class="clearfix"></div>
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumb-->
+        <!-- End Breadcrumb-->
+        <div class="row pt-4 pb-3">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">Search Challan</div>
+                    <div class="card-body">
+
+                        @using (Html.BeginForm("challanlist", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", data_ajax = "false", role = "form" }))
+                        {
+
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>From Date:</label>
+                                        @Html.TextBoxFor(m => m.fromdate, new { @class = "form-control datepicker", @readonly = "readonly" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>To Date:</label>
+                                        @Html.TextBoxFor(m => m.todate, new { @class = "form-control datepicker", @readonly = "readonly" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Cash Advance:</label>
+                                        @Html.TextBoxFor(m => m.cash, new { @class = "form-control c" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Bank Advance:</label>
+                                        @Html.TextBoxFor(m => m.bank, new { @class = "form-control c" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>HSD Advance:</label>
+                                        @Html.TextBoxFor(m => m.hsd, new { @class = "form-control c" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Office Expenses:</label>
+                                        @Html.TextBoxFor(m => m.ofc, new { @class = "form-control c" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <button type="submit" id="btnsubmit" class="btn btn-primary mts">Search</button>
+                                        <button type="submit" class="btn btn-danger mts" onclick="location.reload()">Cancel</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <div class="form-row">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-4 pb-3">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-lg-6">Challan List</div>
+                            <div class="col-lg-6">
+                                <a href="/Admin/challan?id=0"> <button class="btn btn-outline-success float-right "> Create New Challan</button></a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    @if (ViewBag.data == null)
+                    {
+                        <div class="card-body">
+                            <div id="FormOne">
+                                <div class="row">
+                                    <div class="col-md-12">No Client found.</div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="card-body">
+                            @{string confirmMessage = Convert.ToString(TempData["Message"]);
+                                string warningMessage = Convert.ToString(TempData["WarningMessage"]);
+                                if (!string.IsNullOrEmpty(confirmMessage))
+                                {
+                                    <div class="alert alert-success alert-dismissable" id="divSuccessMessage">
+                                        @confirmMessage
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    </div>
+                                }
+                                if (!string.IsNullOrEmpty(warningMessage))
+                                {
+                                    <div class="alert alert-warning alert-dismissable" id="divSuccessMessage">
+                                        @warningMessage
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    </div>
+                                }
+                            }
+
+                            <div class="">
+                                <div id="default-datatable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                                    <table id="default-datatable" class="table table-bordered dataTable table-responsive" role="grid" aria-describedby="default-datatable_info">
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="sorting_asc" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 46px;">Select.</th>
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 91px;">TP Number</th>
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 91px;">Vehicle No</th>
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 91px;">PAN No</th>
+
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 91px;">Owner Name</th>
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 70px;">Load Quantity</th>
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 70px;">Unload Quantity</th>
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 70px;">Rate</th>
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 70px;">Freight</th>
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 70px;">TDS</th>
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 70px;">CashAdvance</th>
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 70px;">BankAdvance</th>
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 70px;">PetrolPump</th>
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 70px;">HSDAdvance</th>
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 70px;">OfficeExpenses</th>
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 70px;">ReceiveDate</th>
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 70px;">Action</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @{ int count = 0;}
+                                            @foreach (var item in ViewBag.data)
+                                            {
+                                                count = count + 1;
+                                            <tr role="row" class="even">
+                                                <td>
+                                                    @if (item.Cash_Adv == 0 || item.Bank_Adv == 0 || item.HSD_Adv == 0 || item.Off_Expenses == 0)
+                                                    {
+                                                        <input type="checkbox" id="chk_@count" class="chk" value="@item.ChalanId" onclick="CheckValue(@count)">
+                                                        <label for="chk_@count"></label><br>
+                                                    }
+                                                </td>
+                                                <td>@item.TP_Number</td>
+                                                <td>@item.Truck_Number</td>
+                                                <td>@item.Address</td>
+                                                <td>@item.Truck_Owner_Name</td>
+                                                <td>@item.Load_Quantity</td>
+                                                <td>@item.UL_Quantity</td>
+                                                <td>@item.Rate</td>
+                                                <td>@item.Freight</td>
+                                                <td>@item.TDS</td>
+                                                @if (item.Cash_Adv != 0)
+                                                {
+                                                    <td><input type="hidden" id="cash_@item.ChalanId" value="@item.Cash_Adv" />@item.Cash_Adv</td>
+                                                }
+                                                else
+                                                {
+                                                    <td><input type="text" id="cash_@item.ChalanId" class="form-control c @count" onkeyup="Check1(@item.ChalanId)" disabled /></td>
+                                                }
+                                                @if (item.Bank_Adv != 0)
+                                                {
+                                                    <td><input type="hidden" id="bank_@item.ChalanId" value="@item.Bank_Adv" />@item.Bank_Adv</td>
+                                                }
+                                                else
+                                                {
+                                                    <td><input type="text" id="bank_@item.ChalanId" class="form-control c @count" onkeyup="Check2(@item.ChalanId)" disabled /></td>
+                                                }
+                                                @if (item.Petrol_Pump_Name != null)
+                                                {
+                                                    <td>@item.Petrol_Pump_Name</td>
+                                                }
+                                                else
+                                                {
+                                                    <td><input type="text" id="petrol_@item.ChalanId" class="form-control @count" disabled /></td>
+                                                }
+                                                @if (item.HSD_Adv != 0)
+                                                {
+                                                    <td><input type="hidden" id="hsd_@item.ChalanId" value="@item.HSD_Adv" />@item.HSD_Adv</td>
+                                                }
+                                                else
+                                                {
+                                                    <td><input type="text" id="hsd_@item.ChalanId" class="form-control c @count" onkeyup="Check3(@item.ChalanId)" disabled /></td>
+                                                }
+                                                @if (item.Off_Expenses != 0)
+                                                {
+                                                    <td><input type="hidden" id="ofcx_@item.ChalanId" value="@item.Off_Expenses" />@item.Off_Expenses</td>
+                                                }
+                                                else
+                                                {
+                                                    <td><input type="text" id="ofcx_@item.ChalanId" class="form-control c @count" onkeyup="Check4(@item.ChalanId)" disabled /></td>
+                                                }
+                                                @if (item.RcvDate != null)
+                                                {
+                                                    <td>@item.RcvDate</td>
+                                                }
+                                                else
+                                                {
+                                                    <td><input type="text" id="rcv_@item.ChalanId" class="form-control datepicker @count" disabled readonly /></td>
+                                                }
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-outline-danger waves-effect waves-light m-1 btn1" onclick="Delete(@item.ChalanId)"> <i class="fa fa-trash-o"></i> </button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            }
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <button type="button" id="btnsubmit" onclick="UpdateChallan()" class="btn btn-primary mts">Update</button>
+                            <button type="submit" class="btn btn-danger mts" onclick="location.reload()">Cancel</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End Row-->
+        </div>
+        <!-- End container-fluid-->
+
+    </div><!--End content-wrapper-->
+</div><!--Start Back To Top Button-->
+<a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+<!--End Back To Top Button-->
+<script>
+    $(".c").on("input", function (evt) {
+        debugger;
+        var self = $(this);
+        self.val(self.val().replace(/[^0-9\.]/g, ''));
+        if ((evt.which != 46 || self.val().indexOf('.') != -1) && (evt.which < 48 || evt.which > 57)) {
+            evt.preventDefault();
+        }
+    });
+    function Check2(id) {
+        var self = $("#bank_" + id);
+        self.val(self.val().replace(/[^0-9\.]/g, ''));
+        if ((self.val().which != 46 || self.val().indexOf('.') != -1) && (self.val().which < 48 || self.val().which > 57)) {
+            evt.preventDefault();
+        }
+    }
+    function Check3(id) {
+        var self = $("#hsd_" + id);
+        self.val(self.val().replace(/[^0-9\.]/g, ''));
+        if ((self.val().which != 46 || self.val().indexOf('.') != -1) && (self.val().which < 48 || self.val().which > 57)) {
+            evt.preventDefault();
+        }
+    }
+    function Check4(id) {
+        var self = $("#ofcx_" + id);
+        self.val(self.val().replace(/[^0-9\.]/g, ''));
+        if ((self.val().which != 46 || self.val().indexOf('.') != -1) && (self.val().which < 48 || self.val().which > 57)) {
+            evt.preventDefault();
+        }
+    }
+    function Check1(id) {
+        debugger
+        var self = $("#cash_" + id);
+        self.val(self.val().replace(/[^0-9\.]/g, ''));
+        if ((self.val().which != 46 || self.val().indexOf('.') != -1) && (self.val().which < 48 || self.val().which > 57)) {
+            evt.preventDefault();
+        }
+    }
+    function Delete(id) {
+        if (confirm("Are you sure want to delete this slip detail"))
+            $.ajax({
+                async: false,
+                url: "/Admin/deletechallan",
+                type: "post",
+                dataType: "json",
+                data: { id: id },
+                success: function (app) {
+                    if (app == true) {
+                        alert("Challan detail deleted successfully");
+                        location.href = "/Admin/challanlist";
+                    }
+                }
+            });
+    }
+    function CheckValue(id) {
+        var data = $("#chk_" + id);
+        if (data[0].checked == true) {
+            $('.' + id).prop("disabled", false);
+        }
+        else {
+            $('.' + id).prop("disabled", true);
+        }
+    }
+    function UpdateChallan() {
+        debugger;
+        var Arraylist = [];
+        var data = document.getElementsByClassName('chk');
+        if (data.length > 0) {
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].checked == true) {
+                    var checkvalue = data[i].value;
+                    var item = {};
+                    item["chalanid"] = checkvalue;
+                    item["cash"] = $("#cash_" + checkvalue).val();
+                    item["bank"] = $("#bank_" + checkvalue).val();
+                    item["hsd"] = $("#hsd_" + checkvalue).val();
+                    item["ofcx"] = $("#ofcx_" + checkvalue).val();
+                    if ($("#petrol_" + checkvalue).val() != "" && $("#petrol_" + checkvalue).val() != null) {
+                        item["petrol"] = $("#petrol_" + checkvalue).val();
+                    }
+                    if ($("#rcv_" + checkvalue).val() != "" && $("#rcv_" + checkvalue).val() != null) {
+                        item["rcv"] = $("#rcv_" + checkvalue).val();
+                    }
+
+                    Arraylist.push(item);
+                }
+            }
+        }
+        if (Arraylist.length > 0) {
+            $.ajax({
+                async: false,
+                url: "/Admin/UpdateChallan",
+                type: "post",
+                dataType: "json",
+                data: { Arraylist: Arraylist },
+                success: function (app) {
+                    if (app == true) {
+                        alert("Challan update successfully");
+                        location.href = "/Admin/challanlist";
+                    }
+                }
+            });
+        }
+        else {
+            alert("Please select some item to update");
+            return false;
+        }
+    }
+</script>

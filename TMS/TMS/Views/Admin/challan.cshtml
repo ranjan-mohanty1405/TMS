@@ -1,0 +1,272 @@
+﻿@model TMS.Models.ChallanModel
+@{
+    ViewBag.Title = "challan";
+    Layout = "~/Views/Shared/TSLayout.cshtml";
+}
+
+<h2></h2>
+
+<style>
+    .tdwidth {
+        width: 50% !important;
+    }
+
+    @@media (max-width:576px) {
+        .mts {
+            margin-top: 0px !important;
+        }
+    }
+
+    .mts {
+        margin-top: 28px;
+    }
+
+    label {
+        color: #212121;
+        font-weight: 600 !important;
+    }
+
+    a {
+        color: #e0ba00;
+    }
+
+    .rules {
+        color: #b56800 !important;
+        font-weight: 700;
+    }
+
+    @@media (min-width:576px) {
+        .modal-dialog1 {
+            max-width: 800px;
+            margin: 1.75rem auto
+        }
+    }
+
+    .modaloverflow {
+        height: 600px;
+        overflow-y: auto;
+    }
+
+    table.dataTable thead > tr > th {
+        color: #fff;
+        background-color: #223035;
+    }
+
+    .table th {
+        padding: 7px !important;
+    }
+
+    .btn1 {
+        padding: 2px 6px;
+    }
+
+
+    .btn-group {
+        box-shadow: none;
+    }
+
+        .btn-group > .btn-group:not(:first-child) > .btn, .btn-group > .btn:not(:first-child) {
+            border-top-left-radius: .25rem;
+            border-bottom-left-radius: .25rem;
+        }
+
+        .btn-group > .btn-group:not(:last-child) > .btn, .btn-group > .btn:not(:last-child):not(.dropdown-toggle) {
+            border-top-right-radius: .25rem;
+            border-bottom-right-radius: .25rem;
+        }
+</style>
+<div class="clearfix"></div>
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumb-->
+        <!-- End Breadcrumb-->
+        <div class="row pt-4 pb-3">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">Upload Challan</div>
+                    <div class="card-body">
+
+                        @using (Html.BeginForm("UploadChallanList", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", data_ajax = "false", role = "form" }))
+                        {
+                            string confirmMessage = Convert.ToString(TempData["Message"]);
+                            string errorMessage = Convert.ToString(TempData["Error"]);
+
+                            if (!string.IsNullOrEmpty(confirmMessage))
+                            {
+                                <div class="alert alert-success alert-dismissable" id="divSuccessMessage">
+                                    @confirmMessage
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                </div>
+                            }
+                            if (!string.IsNullOrEmpty(errorMessage))
+                            {
+                                <div class="alert alert-error alert-dismissable" id="divSuccessMessage">
+                                    @errorMessage
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                </div>
+                            }
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Upload File:</label>
+                                        <input class="form-control" type="file" name="importFile" id="importFile" required />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <button type="submit" id="btnsubmit" class="btn btn-primary mts">Submit</button>
+                                        <button type="submit" class="btn btn-danger mts" onclick="location.reload()">Cancel</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <div class="form-row">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-4 pb-3">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-lg-6">Enter Challan Detail</div>
+                            <div class="col-lg-6">
+                                <a href="/Admin/challanlist"> <button class="btn btn-outline-success float-right "> Challan List</button></a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        @using (Html.BeginForm("challan", "Admin", FormMethod.Post))
+                        {                            
+                        <div class="form-row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>TP Number:</label>
+                                    @Html.TextBoxFor(m => m.TP_Number, new { @class = "form-control", @required = "required", @id = "TP_Number" })
+                                </div>
+                            </div>
+                            
+                        </div>
+                            <div class="form-row" id="challandiv">                               
+                              
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Row-->
+    </div>
+    <!-- End container-fluid-->
+
+</div><!--End content-wrapper-->
+<link href="~/assets/css/Autocomplete.css" rel="stylesheet" />
+<script src="~/assets/js/jquery.min.js"></script>
+<script src="~/assets/js/jquery_Autocomplete.js"></script>
+
+<script>
+    //$(document).ready(function () {
+
+    //    $('.c').val(0.00);
+    //})
+
+    $(".allow_numeric").keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            //display error message
+            return false;
+        }
+    });
+    $(".c").on("input", function (evt) {
+        var self = $(this);
+        self.val(self.val().replace(/[^0-9\.]/g, ''));
+        if ((evt.which != 46 || self.val().indexOf('.') != -1) && (evt.which < 48 || evt.which > 57)) {
+            evt.preventDefault();
+        }
+    });
+    function BindDetail() {
+        var id = $("#owner").val();
+        $.ajax({
+            async: false,
+            url: "/Admin/BindVehicle",
+            type: "post",
+            dataType: "json",
+            data: { id: id },
+            success: function (app) {
+                debugger;
+                if (app != null) {
+                    $("#vehicle").html('');
+                    var data = "";
+                    if (app.data != null) {
+                        for (var i = 0; i < app.data.length; i++) {
+                            data += "<option value=" + app.data[i].Value + ">" + app.data[i].Text + "</option>";
+                        }
+                    }
+                    $("#vehicle").append(data);
+                    $("#Address").val(app.Adress);
+                }
+                else {
+                    $("#vehicle").html('');
+                    $("#Address").val('');
+                }
+            }
+        });
+    }
+    $("#TP_Number").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: '/Admin/GetTPNumber',
+                data: "{ 'prefix': '" + request.term + "'}",
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    debugger;
+                    if (data.length < 1) {
+                        $("#TP_Number").val('');
+                        $("#challandiv").hide();
+
+                    } else {
+                        $("#TP_Number").text('');
+                    }
+                    response($.map(data, function (item) {
+                        return item;
+                    }))
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        },
+        select: function (e, i) {
+            var data = $("#TP_Number").val(i.item.val);
+            BindChalanDetail(data);
+        },
+        minLength: 1
+    });
+    function BindChalanDetail(id) {
+        var id = $("#TP_Number").val();
+        $.ajax({
+            async: false,
+            url: "/Admin/BindChalanDetail",
+            type: "post",
+            dataType: "html",
+            data: { id: id },
+            success: function (app) {
+                debugger;
+                $("#challandiv").show();
+                $("#challandiv").html(app);
+            }
+        });
+    }
+
+</script>

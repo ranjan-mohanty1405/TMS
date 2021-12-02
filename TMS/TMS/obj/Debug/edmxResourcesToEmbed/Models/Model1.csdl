@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="TMSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Registrations" EntityType="TMSModel.Registration" />
+    <EntitySet Name="Users" EntityType="TMSModel.User" />
+    <EntitySet Name="UserTypes" EntityType="TMSModel.UserType" />
+    <EntitySet Name="VehicleMasters" EntityType="TMSModel.VehicleMaster" />
+    <EntitySet Name="VehicleOwners" EntityType="TMSModel.VehicleOwner" />
+    <EntitySet Name="vw_vehicle_master" EntityType="TMSModel.vw_vehicle_master" />
+    <EntitySet Name="vw_vehicle_owner" EntityType="TMSModel.vw_vehicle_owner" />
+    <EntitySet Name="NGT_Payment" EntityType="TMSModel.NGT_Payment" />
+    <EntitySet Name="vw_challan_detail" EntityType="TMSModel.vw_challan_detail" />
+    <EntitySet Name="Chalan_Detail" EntityType="TMSModel.Chalan_Detail" />
+  </EntityContainer>
+  <EntityType Name="Registration">
+    <Key>
+      <PropertyRef Name="RegistrationId" />
+    </Key>
+    <Property Name="RegistrationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DistrictId" Type="Int32" />
+    <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Contactno" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserTypeId" Type="Int32" />
+    <Property Name="RegistrationId" Type="Int32" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="UserTypeId" />
+    </Key>
+    <Property Name="UserTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VehicleMaster">
+    <Key>
+      <PropertyRef Name="VehicleId" />
+    </Key>
+    <Property Name="VehicleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VehicleEncrypt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OwnerId" Type="Int32" Nullable="false" />
+    <Property Name="VehicleNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="VehicleOwner">
+    <Key>
+      <PropertyRef Name="OwnerId" />
+    </Key>
+    <Property Name="OwnerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OwnerEncrypt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OwnerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Adress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PAN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ContactNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="vw_vehicle_master">
+    <Key>
+      <PropertyRef Name="OwnerId" />
+      <PropertyRef Name="VehicleId" />
+    </Key>
+    <Property Name="OwnerId" Type="Int32" Nullable="false" />
+    <Property Name="OwnerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="VehicleNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="VehicleEncrypt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="VehicleId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vw_vehicle_owner">
+    <Key>
+      <PropertyRef Name="OwnerId" />
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="OwnerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OwnerEncrypt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OwnerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Adress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ContactNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="PAN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="NGT_Payment">
+    <Key>
+      <PropertyRef Name="Payment_Id" />
+    </Key>
+    <Property Name="Payment_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Chalan_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TP_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Loading_Point" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Unloading_Point" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Chalan_Date" Type="DateTime" Precision="3" />
+    <Property Name="Truck_Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Owner_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PAN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Loading_Wt" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Unloding_Wt" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Unloading_Date" Type="DateTime" Precision="3" />
+    <Property Name="Paid_Qty" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Rate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Freight" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Cash_Adv" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Bank_Adv" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="HSD_Adv" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Petrol_Pump_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Shortage" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Office_Exp" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Others" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CTC_Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TDS_Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Total_Deduction" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Net_Payble" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Toll_Gate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Final_Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Payment_Date" Type="DateTime" Precision="3" />
+    <Property Name="Bank_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Cheque_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Paid_To" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PAN_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Payment_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Received_Date" Type="DateTime" Precision="3" />
+    <Property Name="Reference_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Voucher_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CC_Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Clllected_At" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Driver_Welfare" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="PaidAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PaidDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="vw_challan_detail">
+    <Key>
+      <PropertyRef Name="ChalanId" />
+    </Key>
+    <Property Name="ChalanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Inv_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Challan_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TP_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Truck_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Load_Quantity" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="UL_Quantity" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Rate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Off_Expenses" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Cash_Adv" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Bank_Adv" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="HSD_Adv" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Slip_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Petrol_Pump_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Driver_Welfare" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Consignor" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Consignee" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Billing_Party" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Loading_Point" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Unloading_Point" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Truck_Owner_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Driver_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DL_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_No" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Ref_Number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="RcvDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="ChlnDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Chalan_Date" Type="DateTime" Precision="3" />
+    <Property Name="TDS" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Freight" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Receive_Date" Type="DateTime" Precision="3" />
+    <Property Name="IsPaid" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Chalan_Detail">
+    <Key>
+      <PropertyRef Name="ChalanId" />
+    </Key>
+    <Property Name="ChalanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Inv_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Challan_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Chalan_Date" Type="DateTime" Precision="3" />
+    <Property Name="TP_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Truck_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Load_Quantity" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="UL_Quantity" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Rate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Off_Expenses" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Cash_Adv" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Bank_Adv" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="HSD_Adv" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Slip_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Petrol_Pump_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Driver_Welfare" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Consignor" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Consignee" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Billing_Party" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Loading_Point" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Unloading_Point" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Truck_Owner_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Driver_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DL_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_No" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Ref_Number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Receive_Date" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="TDS" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Freight" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IsPaid" Type="Boolean" />
+    <Property Name="FromAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BankCash" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ToAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OtherPayment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+  </EntityType>
+</Schema>

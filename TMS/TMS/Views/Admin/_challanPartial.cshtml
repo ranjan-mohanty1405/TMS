@@ -1,0 +1,193 @@
+﻿@model TMS.Models.ChallanModel
+
+@Html.HiddenFor(m => m.ChalanId)
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <label>Truck Owner:</label>
+        @Html.TextBoxFor(m => m.Truck_Owner_Name, new { @class = "form-control", @id = "p3" })
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="form-group">
+        <label>PAN:</label>
+        @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @id = "Address" })
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="form-group">
+        <label>Truck No:</label>
+        @Html.TextBoxFor(m => m.Truck_Number, new { @class = "form-control", @id = "vehicle", @readonly = "readonly", })
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="form-group">
+        <label>Load Quantity:</label>
+        @Html.TextBoxFor(m => m.Load_Quantity, new { @class = "form-control", @readonly = "readonly", })
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="form-group">
+        <label>Unload Quantity:</label>
+        @Html.TextBoxFor(m => m.UL_Quantity, new { @class = "form-control c", @id = "p4" })
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="form-group">
+        <label>Rate:</label>
+        @Html.TextBoxFor(m => m.Rate, new { @class = "form-control", @id = "p5", @readonly = "readonly", })
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="form-group">
+        <label>Slip No:</label>
+        @Html.TextBoxFor(m => m.Slip_No, new { @class = "form-control" })
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <label>Driver Welfare:</label>
+        @Html.TextBoxFor(m => m.Driver_Welfare, new { @class = "form-control c" })
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="form-group">
+        <label>Consignor:</label>
+        @Html.TextBoxFor(m => m.Consignor, new { @class = "form-control" })
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="form-group">
+        <label>Consignee:</label>
+        @Html.TextBoxFor(m => m.Consignee, new { @class = "form-control" })
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="form-group">
+        <label>Billing Party:</label>
+        @Html.TextBoxFor(m => m.Billing_Party, new { @class = "form-control" })
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="form-group">
+        <label>Loading Point:</label>
+        @Html.TextBoxFor(m => m.Loading_Point, new { @class = "form-control" })
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="form-group">
+        <label>Unloadig Point:</label>
+        @Html.TextBoxFor(m => m.Unloading_Point, new { @class = "form-control" })
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="form-group">
+        <label>Driver Name:</label>
+        @Html.TextBoxFor(m => m.Driver_Name, new { @class = "form-control" })
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="form-group">
+        <label>DL Number:</label>
+        @Html.TextBoxFor(m => m.DL_Number, new { @class = "form-control" })
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="form-group">
+        <label>Contact No:</label>
+        @Html.TextBoxFor(m => m.Contact_No, new { @class = "form-control allow_numeric" })
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="form-group">
+        <label>Reference No:</label>
+        @Html.TextBoxFor(m => m.Ref_Number, new { @class = "form-control" })
+    </div>
+</div>
+
+<div class="col-md-10">
+
+</div>
+<div class="col-md-2">
+    <div class="form-group">
+        <button type="submit" id="btnsubmit" class="btn btn-primary mts" onclick="return confirm('Are you sure want to save these detail')">SAVE</button>
+        <button type="button" class="btn btn-danger mts" onclick="location.reload()">RESET</button>
+
+    </div>
+</div>
+<link href="~/assets/css/Autocomplete.css" rel="stylesheet" />
+<script src="~/assets/js/jquery.min.js"></script>
+<script src="~/assets/js/jquery_Autocomplete.js"></script>
+<script>
+    $(".datepicker").datepicker({
+        dateFormat: "dd-mm-yy",
+        changemonth: true,
+        changeyear: true
+    });
+    $("#Address").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: '/Admin/GetPAN',
+                data: "{ 'prefix': '" + request.term + "'}",
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    debugger;
+                    if (data.length < 1) {
+                        $("#Address").val('');
+                    } else {
+                        $("#Address").text('');
+                    }
+                    response($.map(data, function (item) {
+                        return item;
+                    }))
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        },
+        select: function (e, i) {
+            $("#p3").val(i.item.val);
+        },
+        minLength: 1
+    });
+    $("#p3").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: '/Admin/GetOwner',
+                data: "{ 'prefix': '" + request.term + "'}",
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    debugger;
+                    if (data.length < 1) {
+                        $("#p3").val('');
+                    } else {
+                        $("#p3").text('');
+                    }
+                    response($.map(data, function (item) {
+                        return item;
+                    }))
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        },
+        select: function (e, i) {
+            $("#Address").val(i.item.val);
+        },
+        minLength: 1
+    });
+</script>

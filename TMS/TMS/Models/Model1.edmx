@@ -1,0 +1,866 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Chalan_Detail">
+          <Key>
+            <PropertyRef Name="ChalanId" />
+          </Key>
+          <Property Name="ChalanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Inv_Number" Type="varchar" MaxLength="50" />
+          <Property Name="Challan_No" Type="varchar" MaxLength="50" />
+          <Property Name="Chalan_Date" Type="datetime" />
+          <Property Name="TP_Number" Type="varchar" MaxLength="50" />
+          <Property Name="Truck_Number" Type="varchar" MaxLength="50" />
+          <Property Name="Load_Quantity" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="UL_Quantity" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Rate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Off_Expenses" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Cash_Adv" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Bank_Adv" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="HSD_Adv" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Slip_No" Type="varchar" MaxLength="50" />
+          <Property Name="Petrol_Pump_Name" Type="varchar(max)" />
+          <Property Name="Driver_Welfare" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="Consignor" Type="varchar(max)" />
+          <Property Name="Consignee" Type="varchar(max)" />
+          <Property Name="Billing_Party" Type="varchar(max)" />
+          <Property Name="Loading_Point" Type="varchar(max)" />
+          <Property Name="Unloading_Point" Type="varchar(max)" />
+          <Property Name="Truck_Owner_Name" Type="varchar(max)" />
+          <Property Name="Address" Type="varchar(max)" />
+          <Property Name="Driver_Name" Type="varchar" MaxLength="50" />
+          <Property Name="DL_Number" Type="varchar" MaxLength="50" />
+          <Property Name="Contact_No" Type="varchar" MaxLength="20" />
+          <Property Name="Ref_Number" Type="varchar" MaxLength="20" />
+          <Property Name="Receive_Date" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="TDS" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Freight" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IsPaid" Type="bit" />
+          <Property Name="FromAccount" Type="varchar" MaxLength="50" />
+          <Property Name="ChequeNo" Type="varchar" MaxLength="50" />
+          <Property Name="BankCash" Type="varchar" MaxLength="50" />
+          <Property Name="ToAccount" Type="varchar" MaxLength="50" />
+          <Property Name="OtherPayment" Type="varchar" MaxLength="50" />
+          <Property Name="PaymentDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="NGT_Payment">
+          <Key>
+            <PropertyRef Name="Payment_Id" />
+          </Key>
+          <Property Name="Payment_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Chalan_No" Type="varchar" MaxLength="50" />
+          <Property Name="TP_Number" Type="varchar" MaxLength="50" />
+          <Property Name="Loading_Point" Type="varchar" MaxLength="50" />
+          <Property Name="Unloading_Point" Type="varchar" MaxLength="50" />
+          <Property Name="Chalan_Date" Type="datetime" />
+          <Property Name="Truck_Number" Type="varchar(max)" />
+          <Property Name="Owner_Name" Type="varchar(max)" />
+          <Property Name="PAN" Type="varchar" MaxLength="50" />
+          <Property Name="Loading_Wt" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Unloding_Wt" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Unloading_Date" Type="datetime" />
+          <Property Name="Paid_Qty" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Rate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Freight" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Cash_Adv" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Bank_Adv" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="HSD_Adv" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Petrol_Pump_Name" Type="varchar(max)" />
+          <Property Name="Shortage" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Office_Exp" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Others" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CTC_Amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TDS_Amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Total_Deduction" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Net_Payble" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Toll_Gate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Final_Amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Payment_Date" Type="datetime" />
+          <Property Name="Bank_Name" Type="varchar(max)" />
+          <Property Name="Cheque_No" Type="varchar" MaxLength="50" />
+          <Property Name="Paid_To" Type="varchar(max)" />
+          <Property Name="PAN_No" Type="varchar" MaxLength="50" />
+          <Property Name="Payment_By" Type="varchar(max)" />
+          <Property Name="Received_Date" Type="datetime" />
+          <Property Name="Reference_No" Type="varchar" MaxLength="50" />
+          <Property Name="Voucher_No" Type="varchar" MaxLength="50" />
+          <Property Name="CC_Amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Clllected_At" Type="varchar(max)" />
+          <Property Name="Driver_Welfare" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="PaidAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PaidDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="RegistrationId" />
+          </Key>
+          <Property Name="RegistrationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DistrictId" Type="int" />
+          <Property Name="FirstName" Type="varchar(max)" />
+          <Property Name="LastName" Type="varchar(max)" />
+          <Property Name="Email" Type="varchar(max)" />
+          <Property Name="Contactno" Type="varchar" MaxLength="10" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserTypeId" Type="int" />
+          <Property Name="RegistrationId" Type="int" />
+          <Property Name="Username" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="20" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="UserTypeId" />
+          </Key>
+          <Property Name="UserTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserTypeName" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="VehicleMaster">
+          <Key>
+            <PropertyRef Name="VehicleId" />
+          </Key>
+          <Property Name="VehicleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VehicleEncrypt" Type="varchar(max)" />
+          <Property Name="OwnerId" Type="int" Nullable="false" />
+          <Property Name="VehicleNo" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="VehicleOwner">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+          </Key>
+          <Property Name="OwnerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OwnerEncrypt" Type="varchar(max)" />
+          <Property Name="OwnerName" Type="varchar(max)" />
+          <Property Name="Adress" Type="varchar(max)" />
+          <Property Name="PAN" Type="varchar" MaxLength="50" />
+          <Property Name="ContactNo" Type="varchar" MaxLength="15" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TMS.dbo.vw_challan_detail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_challan_detail">
+          <Key>
+            <PropertyRef Name="ChalanId" />
+          </Key>
+          <Property Name="ChalanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Inv_Number" Type="varchar" MaxLength="50" />
+          <Property Name="Challan_No" Type="varchar" MaxLength="50" />
+          <Property Name="TP_Number" Type="varchar" MaxLength="50" />
+          <Property Name="Truck_Number" Type="varchar" MaxLength="50" />
+          <Property Name="Load_Quantity" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="UL_Quantity" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Rate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Off_Expenses" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Cash_Adv" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Bank_Adv" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="HSD_Adv" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Slip_No" Type="varchar" MaxLength="50" />
+          <Property Name="Petrol_Pump_Name" Type="varchar(max)" />
+          <Property Name="Driver_Welfare" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="Consignor" Type="varchar(max)" />
+          <Property Name="Consignee" Type="varchar(max)" />
+          <Property Name="Billing_Party" Type="varchar(max)" />
+          <Property Name="Loading_Point" Type="varchar(max)" />
+          <Property Name="Unloading_Point" Type="varchar(max)" />
+          <Property Name="Truck_Owner_Name" Type="varchar(max)" />
+          <Property Name="Address" Type="varchar(max)" />
+          <Property Name="Driver_Name" Type="varchar" MaxLength="50" />
+          <Property Name="DL_Number" Type="varchar" MaxLength="50" />
+          <Property Name="Contact_No" Type="varchar" MaxLength="20" />
+          <Property Name="Ref_Number" Type="varchar" MaxLength="20" />
+          <Property Name="RcvDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ChlnDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="Chalan_Date" Type="datetime" />
+          <Property Name="TDS" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Freight" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Receive_Date" Type="datetime" />
+          <Property Name="IsPaid" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TMS.dbo.vw_vehicle_master' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_vehicle_master">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+            <PropertyRef Name="VehicleId" />
+          </Key>
+          <Property Name="OwnerId" Type="int" Nullable="false" />
+          <Property Name="OwnerName" Type="varchar(max)" />
+          <Property Name="VehicleNo" Type="varchar" MaxLength="20" />
+          <Property Name="VehicleEncrypt" Type="varchar(max)" />
+          <Property Name="VehicleId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TMS.dbo.vw_vehicle_owner' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_vehicle_owner">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="OwnerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OwnerEncrypt" Type="varchar(max)" />
+          <Property Name="OwnerName" Type="varchar(max)" />
+          <Property Name="Adress" Type="varchar(max)" />
+          <Property Name="ContactNo" Type="varchar" MaxLength="15" />
+          <Property Name="PAN" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="TMSModelStoreContainer">
+          <EntitySet Name="Chalan_Detail" EntityType="Self.Chalan_Detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NGT_Payment" EntityType="Self.NGT_Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Registration" EntityType="Self.Registration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehicleMaster" EntityType="Self.VehicleMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehicleOwner" EntityType="Self.VehicleOwner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_challan_detail" EntityType="Self.vw_challan_detail" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_challan_detail].[ChalanId] AS [ChalanId], 
+    [vw_challan_detail].[Inv_Number] AS [Inv_Number], 
+    [vw_challan_detail].[Challan_No] AS [Challan_No], 
+    [vw_challan_detail].[TP_Number] AS [TP_Number], 
+    [vw_challan_detail].[Truck_Number] AS [Truck_Number], 
+    [vw_challan_detail].[Load_Quantity] AS [Load_Quantity], 
+    [vw_challan_detail].[UL_Quantity] AS [UL_Quantity], 
+    [vw_challan_detail].[Rate] AS [Rate], 
+    [vw_challan_detail].[Off_Expenses] AS [Off_Expenses], 
+    [vw_challan_detail].[Cash_Adv] AS [Cash_Adv], 
+    [vw_challan_detail].[Bank_Adv] AS [Bank_Adv], 
+    [vw_challan_detail].[HSD_Adv] AS [HSD_Adv], 
+    [vw_challan_detail].[Slip_No] AS [Slip_No], 
+    [vw_challan_detail].[Petrol_Pump_Name] AS [Petrol_Pump_Name], 
+    [vw_challan_detail].[Driver_Welfare] AS [Driver_Welfare], 
+    [vw_challan_detail].[Status] AS [Status], 
+    [vw_challan_detail].[Consignor] AS [Consignor], 
+    [vw_challan_detail].[Consignee] AS [Consignee], 
+    [vw_challan_detail].[Billing_Party] AS [Billing_Party], 
+    [vw_challan_detail].[Loading_Point] AS [Loading_Point], 
+    [vw_challan_detail].[Unloading_Point] AS [Unloading_Point], 
+    [vw_challan_detail].[Truck_Owner_Name] AS [Truck_Owner_Name], 
+    [vw_challan_detail].[Address] AS [Address], 
+    [vw_challan_detail].[Driver_Name] AS [Driver_Name], 
+    [vw_challan_detail].[DL_Number] AS [DL_Number], 
+    [vw_challan_detail].[Contact_No] AS [Contact_No], 
+    [vw_challan_detail].[Ref_Number] AS [Ref_Number], 
+    [vw_challan_detail].[RcvDate] AS [RcvDate], 
+    [vw_challan_detail].[ChlnDate] AS [ChlnDate], 
+    [vw_challan_detail].[Chalan_Date] AS [Chalan_Date], 
+    [vw_challan_detail].[TDS] AS [TDS], 
+    [vw_challan_detail].[Freight] AS [Freight], 
+    [vw_challan_detail].[Receive_Date] AS [Receive_Date], 
+    [vw_challan_detail].[IsPaid] AS [IsPaid]
+    FROM [dbo].[vw_challan_detail] AS [vw_challan_detail]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_vehicle_master" EntityType="Self.vw_vehicle_master" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_vehicle_master].[OwnerId] AS [OwnerId], 
+    [vw_vehicle_master].[OwnerName] AS [OwnerName], 
+    [vw_vehicle_master].[VehicleNo] AS [VehicleNo], 
+    [vw_vehicle_master].[VehicleEncrypt] AS [VehicleEncrypt], 
+    [vw_vehicle_master].[VehicleId] AS [VehicleId]
+    FROM [dbo].[vw_vehicle_master] AS [vw_vehicle_master]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_vehicle_owner" EntityType="Self.vw_vehicle_owner" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_vehicle_owner].[OwnerId] AS [OwnerId], 
+    [vw_vehicle_owner].[OwnerEncrypt] AS [OwnerEncrypt], 
+    [vw_vehicle_owner].[OwnerName] AS [OwnerName], 
+    [vw_vehicle_owner].[Adress] AS [Adress], 
+    [vw_vehicle_owner].[ContactNo] AS [ContactNo], 
+    [vw_vehicle_owner].[PAN] AS [PAN], 
+    [vw_vehicle_owner].[Email] AS [Email]
+    FROM [dbo].[vw_vehicle_owner] AS [vw_vehicle_owner]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Registrations" EntityType="TMSModel.Registration" />
+          <EntitySet Name="Users" EntityType="TMSModel.User" />
+          <EntitySet Name="UserTypes" EntityType="TMSModel.UserType" />
+          <EntitySet Name="VehicleMasters" EntityType="TMSModel.VehicleMaster" />
+          <EntitySet Name="VehicleOwners" EntityType="TMSModel.VehicleOwner" />
+          <EntitySet Name="vw_vehicle_master" EntityType="TMSModel.vw_vehicle_master" />
+          <EntitySet Name="vw_vehicle_owner" EntityType="TMSModel.vw_vehicle_owner" />
+          <EntitySet Name="NGT_Payment" EntityType="TMSModel.NGT_Payment" />
+          <EntitySet Name="vw_challan_detail" EntityType="TMSModel.vw_challan_detail" />
+          <EntitySet Name="Chalan_Detail" EntityType="TMSModel.Chalan_Detail" />
+        </EntityContainer>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="RegistrationId" />
+          </Key>
+          <Property Name="RegistrationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DistrictId" Type="Int32" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Contactno" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserTypeId" Type="Int32" />
+          <Property Name="RegistrationId" Type="Int32" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="UserTypeId" />
+          </Key>
+          <Property Name="UserTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VehicleMaster">
+          <Key>
+            <PropertyRef Name="VehicleId" />
+          </Key>
+          <Property Name="VehicleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VehicleEncrypt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerId" Type="Int32" Nullable="false" />
+          <Property Name="VehicleNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="VehicleOwner">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+          </Key>
+          <Property Name="OwnerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OwnerEncrypt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Adress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PAN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="vw_vehicle_master">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+            <PropertyRef Name="VehicleId" />
+          </Key>
+          <Property Name="OwnerId" Type="Int32" Nullable="false" />
+          <Property Name="OwnerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleEncrypt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vw_vehicle_owner">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="OwnerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OwnerEncrypt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Adress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="PAN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="NGT_Payment">
+          <Key>
+            <PropertyRef Name="Payment_Id" />
+          </Key>
+          <Property Name="Payment_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Chalan_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TP_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Loading_Point" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Unloading_Point" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Chalan_Date" Type="DateTime" Precision="3" />
+          <Property Name="Truck_Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Owner_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PAN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Loading_Wt" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Unloding_Wt" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Unloading_Date" Type="DateTime" Precision="3" />
+          <Property Name="Paid_Qty" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Rate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Freight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Cash_Adv" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Bank_Adv" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="HSD_Adv" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Petrol_Pump_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Shortage" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Office_Exp" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Others" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CTC_Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TDS_Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Total_Deduction" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Net_Payble" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Toll_Gate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Final_Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Payment_Date" Type="DateTime" Precision="3" />
+          <Property Name="Bank_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Cheque_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Paid_To" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PAN_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Payment_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Received_Date" Type="DateTime" Precision="3" />
+          <Property Name="Reference_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Voucher_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CC_Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Clllected_At" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Driver_Welfare" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="PaidAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PaidDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="vw_challan_detail">
+          <Key>
+            <PropertyRef Name="ChalanId" />
+          </Key>
+          <Property Name="ChalanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Inv_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Challan_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TP_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Truck_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Load_Quantity" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="UL_Quantity" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Rate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Off_Expenses" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Cash_Adv" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Bank_Adv" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="HSD_Adv" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Slip_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Petrol_Pump_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Driver_Welfare" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Consignor" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Consignee" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Billing_Party" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Loading_Point" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Unloading_Point" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Truck_Owner_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Driver_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DL_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contact_No" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Ref_Number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RcvDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ChlnDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Chalan_Date" Type="DateTime" Precision="3" />
+          <Property Name="TDS" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Freight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Receive_Date" Type="DateTime" Precision="3" />
+          <Property Name="IsPaid" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Chalan_Detail">
+          <Key>
+            <PropertyRef Name="ChalanId" />
+          </Key>
+          <Property Name="ChalanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Inv_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Challan_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Chalan_Date" Type="DateTime" Precision="3" />
+          <Property Name="TP_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Truck_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Load_Quantity" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="UL_Quantity" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Rate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Off_Expenses" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Cash_Adv" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Bank_Adv" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="HSD_Adv" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Slip_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Petrol_Pump_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Driver_Welfare" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Consignor" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Consignee" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Billing_Party" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Loading_Point" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Unloading_Point" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Truck_Owner_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Driver_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DL_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contact_No" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Ref_Number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Receive_Date" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="TDS" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Freight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IsPaid" Type="Boolean" />
+          <Property Name="FromAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BankCash" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ToAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OtherPayment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TMSModelStoreContainer" CdmEntityContainer="TMSEntities">
+          <EntitySetMapping Name="Registrations">
+            <EntityTypeMapping TypeName="TMSModel.Registration">
+              <MappingFragment StoreEntitySet="Registration">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Contactno" ColumnName="Contactno" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="RegistrationId" ColumnName="RegistrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TMSModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="RegistrationId" ColumnName="RegistrationId" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTypes">
+            <EntityTypeMapping TypeName="TMSModel.UserType">
+              <MappingFragment StoreEntitySet="UserType">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleMasters">
+            <EntityTypeMapping TypeName="TMSModel.VehicleMaster">
+              <MappingFragment StoreEntitySet="VehicleMaster">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="VehicleNo" ColumnName="VehicleNo" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="VehicleEncrypt" ColumnName="VehicleEncrypt" />
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleOwners">
+            <EntityTypeMapping TypeName="TMSModel.VehicleOwner">
+              <MappingFragment StoreEntitySet="VehicleOwner">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="PAN" ColumnName="PAN" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+                <ScalarProperty Name="OwnerEncrypt" ColumnName="OwnerEncrypt" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_vehicle_master">
+            <EntityTypeMapping TypeName="TMSModel.vw_vehicle_master">
+              <MappingFragment StoreEntitySet="vw_vehicle_master">
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="VehicleEncrypt" ColumnName="VehicleEncrypt" />
+                <ScalarProperty Name="VehicleNo" ColumnName="VehicleNo" />
+                <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_vehicle_owner">
+            <EntityTypeMapping TypeName="TMSModel.vw_vehicle_owner">
+              <MappingFragment StoreEntitySet="vw_vehicle_owner">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PAN" ColumnName="PAN" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+                <ScalarProperty Name="OwnerEncrypt" ColumnName="OwnerEncrypt" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NGT_Payment">
+            <EntityTypeMapping TypeName="TMSModel.NGT_Payment">
+              <MappingFragment StoreEntitySet="NGT_Payment">
+                <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
+                <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Driver_Welfare" ColumnName="Driver_Welfare" />
+                <ScalarProperty Name="Clllected_At" ColumnName="Clllected_At" />
+                <ScalarProperty Name="CC_Amount" ColumnName="CC_Amount" />
+                <ScalarProperty Name="Voucher_No" ColumnName="Voucher_No" />
+                <ScalarProperty Name="Reference_No" ColumnName="Reference_No" />
+                <ScalarProperty Name="Received_Date" ColumnName="Received_Date" />
+                <ScalarProperty Name="Payment_By" ColumnName="Payment_By" />
+                <ScalarProperty Name="PAN_No" ColumnName="PAN_No" />
+                <ScalarProperty Name="Paid_To" ColumnName="Paid_To" />
+                <ScalarProperty Name="Cheque_No" ColumnName="Cheque_No" />
+                <ScalarProperty Name="Bank_Name" ColumnName="Bank_Name" />
+                <ScalarProperty Name="Payment_Date" ColumnName="Payment_Date" />
+                <ScalarProperty Name="Final_Amount" ColumnName="Final_Amount" />
+                <ScalarProperty Name="Toll_Gate" ColumnName="Toll_Gate" />
+                <ScalarProperty Name="Net_Payble" ColumnName="Net_Payble" />
+                <ScalarProperty Name="Total_Deduction" ColumnName="Total_Deduction" />
+                <ScalarProperty Name="TDS_Amount" ColumnName="TDS_Amount" />
+                <ScalarProperty Name="CTC_Amount" ColumnName="CTC_Amount" />
+                <ScalarProperty Name="Others" ColumnName="Others" />
+                <ScalarProperty Name="Office_Exp" ColumnName="Office_Exp" />
+                <ScalarProperty Name="Shortage" ColumnName="Shortage" />
+                <ScalarProperty Name="Petrol_Pump_Name" ColumnName="Petrol_Pump_Name" />
+                <ScalarProperty Name="HSD_Adv" ColumnName="HSD_Adv" />
+                <ScalarProperty Name="Bank_Adv" ColumnName="Bank_Adv" />
+                <ScalarProperty Name="Cash_Adv" ColumnName="Cash_Adv" />
+                <ScalarProperty Name="Freight" ColumnName="Freight" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Paid_Qty" ColumnName="Paid_Qty" />
+                <ScalarProperty Name="Unloading_Date" ColumnName="Unloading_Date" />
+                <ScalarProperty Name="Unloding_Wt" ColumnName="Unloding_Wt" />
+                <ScalarProperty Name="Loading_Wt" ColumnName="Loading_Wt" />
+                <ScalarProperty Name="PAN" ColumnName="PAN" />
+                <ScalarProperty Name="Owner_Name" ColumnName="Owner_Name" />
+                <ScalarProperty Name="Truck_Number" ColumnName="Truck_Number" />
+                <ScalarProperty Name="Chalan_Date" ColumnName="Chalan_Date" />
+                <ScalarProperty Name="Unloading_Point" ColumnName="Unloading_Point" />
+                <ScalarProperty Name="Loading_Point" ColumnName="Loading_Point" />
+                <ScalarProperty Name="TP_Number" ColumnName="TP_Number" />
+                <ScalarProperty Name="Chalan_No" ColumnName="Chalan_No" />
+                <ScalarProperty Name="Payment_Id" ColumnName="Payment_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_challan_detail">
+            <EntityTypeMapping TypeName="TMSModel.vw_challan_detail">
+              <MappingFragment StoreEntitySet="vw_challan_detail">
+                <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+                <ScalarProperty Name="Receive_Date" ColumnName="Receive_Date" />
+                <ScalarProperty Name="Freight" ColumnName="Freight" />
+                <ScalarProperty Name="TDS" ColumnName="TDS" />
+                <ScalarProperty Name="Chalan_Date" ColumnName="Chalan_Date" />
+                <ScalarProperty Name="ChlnDate" ColumnName="ChlnDate" />
+                <ScalarProperty Name="RcvDate" ColumnName="RcvDate" />
+                <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+                <ScalarProperty Name="Contact_No" ColumnName="Contact_No" />
+                <ScalarProperty Name="DL_Number" ColumnName="DL_Number" />
+                <ScalarProperty Name="Driver_Name" ColumnName="Driver_Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Truck_Owner_Name" ColumnName="Truck_Owner_Name" />
+                <ScalarProperty Name="Unloading_Point" ColumnName="Unloading_Point" />
+                <ScalarProperty Name="Loading_Point" ColumnName="Loading_Point" />
+                <ScalarProperty Name="Billing_Party" ColumnName="Billing_Party" />
+                <ScalarProperty Name="Consignee" ColumnName="Consignee" />
+                <ScalarProperty Name="Consignor" ColumnName="Consignor" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Driver_Welfare" ColumnName="Driver_Welfare" />
+                <ScalarProperty Name="Petrol_Pump_Name" ColumnName="Petrol_Pump_Name" />
+                <ScalarProperty Name="Slip_No" ColumnName="Slip_No" />
+                <ScalarProperty Name="HSD_Adv" ColumnName="HSD_Adv" />
+                <ScalarProperty Name="Bank_Adv" ColumnName="Bank_Adv" />
+                <ScalarProperty Name="Cash_Adv" ColumnName="Cash_Adv" />
+                <ScalarProperty Name="Off_Expenses" ColumnName="Off_Expenses" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="UL_Quantity" ColumnName="UL_Quantity" />
+                <ScalarProperty Name="Load_Quantity" ColumnName="Load_Quantity" />
+                <ScalarProperty Name="Truck_Number" ColumnName="Truck_Number" />
+                <ScalarProperty Name="TP_Number" ColumnName="TP_Number" />
+                <ScalarProperty Name="Challan_No" ColumnName="Challan_No" />
+                <ScalarProperty Name="Inv_Number" ColumnName="Inv_Number" />
+                <ScalarProperty Name="ChalanId" ColumnName="ChalanId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Chalan_Detail">
+            <EntityTypeMapping TypeName="TMSModel.Chalan_Detail">
+              <MappingFragment StoreEntitySet="Chalan_Detail">
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="OtherPayment" ColumnName="OtherPayment" />
+                <ScalarProperty Name="ToAccount" ColumnName="ToAccount" />
+                <ScalarProperty Name="BankCash" ColumnName="BankCash" />
+                <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
+                <ScalarProperty Name="FromAccount" ColumnName="FromAccount" />
+                <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+                <ScalarProperty Name="Freight" ColumnName="Freight" />
+                <ScalarProperty Name="TDS" ColumnName="TDS" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Receive_Date" ColumnName="Receive_Date" />
+                <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+                <ScalarProperty Name="Contact_No" ColumnName="Contact_No" />
+                <ScalarProperty Name="DL_Number" ColumnName="DL_Number" />
+                <ScalarProperty Name="Driver_Name" ColumnName="Driver_Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Truck_Owner_Name" ColumnName="Truck_Owner_Name" />
+                <ScalarProperty Name="Unloading_Point" ColumnName="Unloading_Point" />
+                <ScalarProperty Name="Loading_Point" ColumnName="Loading_Point" />
+                <ScalarProperty Name="Billing_Party" ColumnName="Billing_Party" />
+                <ScalarProperty Name="Consignee" ColumnName="Consignee" />
+                <ScalarProperty Name="Consignor" ColumnName="Consignor" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Driver_Welfare" ColumnName="Driver_Welfare" />
+                <ScalarProperty Name="Petrol_Pump_Name" ColumnName="Petrol_Pump_Name" />
+                <ScalarProperty Name="Slip_No" ColumnName="Slip_No" />
+                <ScalarProperty Name="HSD_Adv" ColumnName="HSD_Adv" />
+                <ScalarProperty Name="Bank_Adv" ColumnName="Bank_Adv" />
+                <ScalarProperty Name="Cash_Adv" ColumnName="Cash_Adv" />
+                <ScalarProperty Name="Off_Expenses" ColumnName="Off_Expenses" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="UL_Quantity" ColumnName="UL_Quantity" />
+                <ScalarProperty Name="Load_Quantity" ColumnName="Load_Quantity" />
+                <ScalarProperty Name="Truck_Number" ColumnName="Truck_Number" />
+                <ScalarProperty Name="TP_Number" ColumnName="TP_Number" />
+                <ScalarProperty Name="Chalan_Date" ColumnName="Chalan_Date" />
+                <ScalarProperty Name="Challan_No" ColumnName="Challan_No" />
+                <ScalarProperty Name="Inv_Number" ColumnName="Inv_Number" />
+                <ScalarProperty Name="ChalanId" ColumnName="ChalanId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TMSModelStoreContainer" CdmEntityContainer="TMSEntities">
+    <EntitySetMapping Name="Registrations">
+      <EntityTypeMapping TypeName="TMSModel.Registration">
+        <MappingFragment StoreEntitySet="Registration">
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Contactno" ColumnName="Contactno" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+          <ScalarProperty Name="RegistrationId" ColumnName="RegistrationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="TMSModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="RegistrationId" ColumnName="RegistrationId" />
+          <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserTypes">
+      <EntityTypeMapping TypeName="TMSModel.UserType">
+        <MappingFragment StoreEntitySet="UserType">
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
+          <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VehicleMasters">
+      <EntityTypeMapping TypeName="TMSModel.VehicleMaster">
+        <MappingFragment StoreEntitySet="VehicleMaster">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="VehicleNo" ColumnName="VehicleNo" />
+          <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+          <ScalarProperty Name="VehicleEncrypt" ColumnName="VehicleEncrypt" />
+          <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VehicleOwners">
+      <EntityTypeMapping TypeName="TMSModel.VehicleOwner">
+        <MappingFragment StoreEntitySet="VehicleOwner">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+          <ScalarProperty Name="PAN" ColumnName="PAN" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+          <ScalarProperty Name="OwnerEncrypt" ColumnName="OwnerEncrypt" />
+          <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_vehicle_master">
+      <EntityTypeMapping TypeName="TMSModel.vw_vehicle_master">
+        <MappingFragment StoreEntitySet="vw_vehicle_master">
+          <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+          <ScalarProperty Name="VehicleEncrypt" ColumnName="VehicleEncrypt" />
+          <ScalarProperty Name="VehicleNo" ColumnName="VehicleNo" />
+          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+          <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_vehicle_owner">
+      <EntityTypeMapping TypeName="TMSModel.vw_vehicle_owner">
+        <MappingFragment StoreEntitySet="vw_vehicle_owner">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PAN" ColumnName="PAN" />
+          <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+          <ScalarProperty Name="OwnerEncrypt" ColumnName="OwnerEncrypt" />
+          <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NGT_Payment">
+      <EntityTypeMapping TypeName="TMSModel.NGT_Payment">
+        <MappingFragment StoreEntitySet="NGT_Payment">
+          <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
+          <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Driver_Welfare" ColumnName="Driver_Welfare" />
+          <ScalarProperty Name="Clllected_At" ColumnName="Clllected_At" />
+          <ScalarProperty Name="CC_Amount" ColumnName="CC_Amount" />
+          <ScalarProperty Name="Voucher_No" ColumnName="Voucher_No" />
+          <ScalarProperty Name="Reference_No" ColumnName="Reference_No" />
+          <ScalarProperty Name="Received_Date" ColumnName="Received_Date" />
+          <ScalarProperty Name="Payment_By" ColumnName="Payment_By" />
+          <ScalarProperty Name="PAN_No" ColumnName="PAN_No" />
+          <ScalarProperty Name="Paid_To" ColumnName="Paid_To" />
+          <ScalarProperty Name="Cheque_No" ColumnName="Cheque_No" />
+          <ScalarProperty Name="Bank_Name" ColumnName="Bank_Name" />
+          <ScalarProperty Name="Payment_Date" ColumnName="Payment_Date" />
+          <ScalarProperty Name="Final_Amount" ColumnName="Final_Amount" />
+          <ScalarProperty Name="Toll_Gate" ColumnName="Toll_Gate" />
+          <ScalarProperty Name="Net_Payble" ColumnName="Net_Payble" />
+          <ScalarProperty Name="Total_Deduction" ColumnName="Total_Deduction" />
+          <ScalarProperty Name="TDS_Amount" ColumnName="TDS_Amount" />
+          <ScalarProperty Name="CTC_Amount" ColumnName="CTC_Amount" />
+          <ScalarProperty Name="Others" ColumnName="Others" />
+          <ScalarProperty Name="Office_Exp" ColumnName="Office_Exp" />
+          <ScalarProperty Name="Shortage" ColumnName="Shortage" />
+          <ScalarProperty Name="Petrol_Pump_Name" ColumnName="Petrol_Pump_Name" />
+          <ScalarProperty Name="HSD_Adv" ColumnName="HSD_Adv" />
+          <ScalarProperty Name="Bank_Adv" ColumnName="Bank_Adv" />
+          <ScalarProperty Name="Cash_Adv" ColumnName="Cash_Adv" />
+          <ScalarProperty Name="Freight" ColumnName="Freight" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="Paid_Qty" ColumnName="Paid_Qty" />
+          <ScalarProperty Name="Unloading_Date" ColumnName="Unloading_Date" />
+          <ScalarProperty Name="Unloding_Wt" ColumnName="Unloding_Wt" />
+          <ScalarProperty Name="Loading_Wt" ColumnName="Loading_Wt" />
+          <ScalarProperty Name="PAN" ColumnName="PAN" />
+          <ScalarProperty Name="Owner_Name" ColumnName="Owner_Name" />
+          <ScalarProperty Name="Truck_Number" ColumnName="Truck_Number" />
+          <ScalarProperty Name="Chalan_Date" ColumnName="Chalan_Date" />
+          <ScalarProperty Name="Unloading_Point" ColumnName="Unloading_Point" />
+          <ScalarProperty Name="Loading_Point" ColumnName="Loading_Point" />
+          <ScalarProperty Name="TP_Number" ColumnName="TP_Number" />
+          <ScalarProperty Name="Chalan_No" ColumnName="Chalan_No" />
+          <ScalarProperty Name="Payment_Id" ColumnName="Payment_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_challan_detail">
+      <EntityTypeMapping TypeName="TMSModel.vw_challan_detail">
+        <MappingFragment StoreEntitySet="vw_challan_detail">
+          <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+          <ScalarProperty Name="Receive_Date" ColumnName="Receive_Date" />
+          <ScalarProperty Name="Freight" ColumnName="Freight" />
+          <ScalarProperty Name="TDS" ColumnName="TDS" />
+          <ScalarProperty Name="Chalan_Date" ColumnName="Chalan_Date" />
+          <ScalarProperty Name="ChlnDate" ColumnName="ChlnDate" />
+          <ScalarProperty Name="RcvDate" ColumnName="RcvDate" />
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Contact_No" ColumnName="Contact_No" />
+          <ScalarProperty Name="DL_Number" ColumnName="DL_Number" />
+          <ScalarProperty Name="Driver_Name" ColumnName="Driver_Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Truck_Owner_Name" ColumnName="Truck_Owner_Name" />
+          <ScalarProperty Name="Unloading_Point" ColumnName="Unloading_Point" />
+          <ScalarProperty Name="Loading_Point" ColumnName="Loading_Point" />
+          <ScalarProperty Name="Billing_Party" ColumnName="Billing_Party" />
+          <ScalarProperty Name="Consignee" ColumnName="Consignee" />
+          <ScalarProperty Name="Consignor" ColumnName="Consignor" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Driver_Welfare" ColumnName="Driver_Welfare" />
+          <ScalarProperty Name="Petrol_Pump_Name" ColumnName="Petrol_Pump_Name" />
+          <ScalarProperty Name="Slip_No" ColumnName="Slip_No" />
+          <ScalarProperty Name="HSD_Adv" ColumnName="HSD_Adv" />
+          <ScalarProperty Name="Bank_Adv" ColumnName="Bank_Adv" />
+          <ScalarProperty Name="Cash_Adv" ColumnName="Cash_Adv" />
+          <ScalarProperty Name="Off_Expenses" ColumnName="Off_Expenses" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="UL_Quantity" ColumnName="UL_Quantity" />
+          <ScalarProperty Name="Load_Quantity" ColumnName="Load_Quantity" />
+          <ScalarProperty Name="Truck_Number" ColumnName="Truck_Number" />
+          <ScalarProperty Name="TP_Number" ColumnName="TP_Number" />
+          <ScalarProperty Name="Challan_No" ColumnName="Challan_No" />
+          <ScalarProperty Name="Inv_Number" ColumnName="Inv_Number" />
+          <ScalarProperty Name="ChalanId" ColumnName="ChalanId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Chalan_Detail">
+      <EntityTypeMapping TypeName="TMSModel.Chalan_Detail">
+        <MappingFragment StoreEntitySet="Chalan_Detail">
+          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+          <ScalarProperty Name="OtherPayment" ColumnName="OtherPayment" />
+          <ScalarProperty Name="ToAccount" ColumnName="ToAccount" />
+          <ScalarProperty Name="BankCash" ColumnName="BankCash" />
+          <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
+          <ScalarProperty Name="FromAccount" ColumnName="FromAccount" />
+          <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+          <ScalarProperty Name="Freight" ColumnName="Freight" />
+          <ScalarProperty Name="TDS" ColumnName="TDS" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Receive_Date" ColumnName="Receive_Date" />
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Contact_No" ColumnName="Contact_No" />
+          <ScalarProperty Name="DL_Number" ColumnName="DL_Number" />
+          <ScalarProperty Name="Driver_Name" ColumnName="Driver_Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Truck_Owner_Name" ColumnName="Truck_Owner_Name" />
+          <ScalarProperty Name="Unloading_Point" ColumnName="Unloading_Point" />
+          <ScalarProperty Name="Loading_Point" ColumnName="Loading_Point" />
+          <ScalarProperty Name="Billing_Party" ColumnName="Billing_Party" />
+          <ScalarProperty Name="Consignee" ColumnName="Consignee" />
+          <ScalarProperty Name="Consignor" ColumnName="Consignor" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Driver_Welfare" ColumnName="Driver_Welfare" />
+          <ScalarProperty Name="Petrol_Pump_Name" ColumnName="Petrol_Pump_Name" />
+          <ScalarProperty Name="Slip_No" ColumnName="Slip_No" />
+          <ScalarProperty Name="HSD_Adv" ColumnName="HSD_Adv" />
+          <ScalarProperty Name="Bank_Adv" ColumnName="Bank_Adv" />
+          <ScalarProperty Name="Cash_Adv" ColumnName="Cash_Adv" />
+          <ScalarProperty Name="Off_Expenses" ColumnName="Off_Expenses" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="UL_Quantity" ColumnName="UL_Quantity" />
+          <ScalarProperty Name="Load_Quantity" ColumnName="Load_Quantity" />
+          <ScalarProperty Name="Truck_Number" ColumnName="Truck_Number" />
+          <ScalarProperty Name="TP_Number" ColumnName="TP_Number" />
+          <ScalarProperty Name="Chalan_Date" ColumnName="Chalan_Date" />
+          <ScalarProperty Name="Challan_No" ColumnName="Challan_No" />
+          <ScalarProperty Name="Inv_Number" ColumnName="Inv_Number" />
+          <ScalarProperty Name="ChalanId" ColumnName="ChalanId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

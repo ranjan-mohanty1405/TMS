@@ -1,0 +1,481 @@
+﻿@model TMS.Models.ChallanSearchModel
+@{
+    ViewBag.Title = "payment";
+    Layout = "~/Views/Shared/TSLayout.cshtml";
+}
+
+<h2></h2>
+
+<style>
+    .pbold {
+        font-weight: 600;
+        color: black;
+    }
+
+    .tdwidth {
+        width: 100% !important;
+    }
+
+    .tdwidt1 {
+        width: 54% !important;
+    }
+
+    @@media (max-width:576px) {
+        .mts {
+            margin-top: 0px !important;
+        }
+    }
+
+    .mts {
+        margin-top: 28px;
+    }
+
+    label {
+        color: #212121;
+        font-weight: 600 !important;
+    }
+
+    a {
+        color: #e0ba00;
+    }
+
+    .rules {
+        color: #b56800 !important;
+        font-weight: 700;
+    }
+
+    @@media (min-width:576px) {
+        .modal-dialog1 {
+            max-width: 800px;
+            margin: 1.75rem auto
+        }
+    }
+
+    .modaloverflow {
+        height: 600px;
+        overflow-y: auto;
+    }
+
+    table.dataTable thead > tr > th {
+        color: #fff;
+        background-color: #223035;
+    }
+
+    .table th {
+        padding: 7px !important;
+    }
+
+    .form-control1 {
+        border: 1px solid #f11111 !important;
+    }
+
+    .btn1 {
+        padding: 2px 6px;
+    }
+
+
+    .btn-group {
+        box-shadow: none;
+    }
+
+        .btn-group > .btn-group:not(:first-child) > .btn, .btn-group > .btn:not(:first-child) {
+            border-top-left-radius: .25rem;
+            border-bottom-left-radius: .25rem;
+        }
+
+        .btn-group > .btn-group:not(:last-child) > .btn, .btn-group > .btn:not(:last-child):not(.dropdown-toggle) {
+            border-top-right-radius: .25rem;
+            border-bottom-right-radius: .25rem;
+        }
+</style>
+<div class="clearfix"></div>
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumb-->
+        <!-- End Breadcrumb-->
+        <div class="row pt-4 pb-3">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">Search Challan</div>
+                    <div class="card-body">
+
+                        @using (Html.BeginForm("payment", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", data_ajax = "false", role = "form" }))
+                        {
+
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Truck Owner:</label>
+                                        @Html.TextBoxFor(m => m.owner, new { @class = "form-control", @id = "p3", @required = "required" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>PAN:</label>
+                                        @Html.TextBoxFor(m => m.pan, new { @class = "form-control", @id = "Address" })
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>From Date:</label>
+                                        @Html.TextBoxFor(m => m.fromdate, new { @class = "form-control datepicker", @readonly = "readonly" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>To Date:</label>
+                                        @Html.TextBoxFor(m => m.todate, new { @class = "form-control datepicker", @readonly = "readonly" })
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <button type="submit" id="btnsubmit" class="btn btn-primary mts">Search</button>
+                                        <button type="submit" class="btn btn-danger mts" onclick="location.reload()">Cancel</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <div class="form-row">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-4 pb-3">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-lg-6">Payment List</div>
+                            
+                        </div>
+
+                    </div>
+
+                    @if (ViewBag.data == null)
+                    {
+                        <div class="card-body">
+                            <div id="FormOne">
+                                <div class="row">
+                                    <div class="col-md-12">No Detail found.</div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="card-body">
+                            @{string confirmMessage = Convert.ToString(TempData["Message"]);
+                                string warningMessage = Convert.ToString(TempData["WarningMessage"]);
+                                if (!string.IsNullOrEmpty(confirmMessage))
+                                {
+                                    <div class="alert alert-success alert-dismissable" id="divSuccessMessage">
+                                        @confirmMessage
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    </div>
+                                }
+                                if (!string.IsNullOrEmpty(warningMessage))
+                                {
+                                    <div class="alert alert-warning alert-dismissable" id="divSuccessMessage">
+                                        @warningMessage
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    </div>
+                                }
+                            }
+
+                            <div class="">
+                                <div id="default-datatable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                                    <table id="" class="table table-bordered dataTable table-responsive" role="grid" aria-describedby="default-datatable_info">
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 91px;">TP Number</th>
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 91px;">Vehicle No</th>
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 91px;">Owner Name</th>
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 70px;">Unload Quantity(In Ton)</th>
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 70px;">Freight</th>
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 70px;">TDS</th>
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 70px;">CashAdvance</th>
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 70px;">BankAdvance</th>
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 70px;">HSDAdvance</th>
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 70px;">OfficeExpenses</th>
+                                                <th class="sorting" tabindex="0" aria-controls="default-datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 70px;">Amount To Paid</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody id="paymentbody">
+                                            @{ int count = 0;}
+                                            @foreach (var item in ViewBag.data)
+                                            {
+                                                count = count + 1;
+                                                <tr role="row" class="even">
+                                                    <td><input type="hidden" class="tp" value="@item.TP_Number" />@item.TP_Number</td>
+                                                    <td>@item.Truck_Number</td>
+                                                    <td>@item.Truck_Owner_Name</td>
+                                                    <td>@item.UL_Quantity</td>
+                                                    <td>@item.Freight</td>
+                                                    <td>@item.TDS</td>
+                                                    <td>@item.Cash_Adv</td>
+                                                    <td>@item.Bank_Adv</td>
+                                                    <td>@item.HSD_Adv</td>
+                                                    <td>@item.Off_Expenses</td>
+                                                    <td></td>
+                                                </tr>
+                                            }
+
+                                        </tbody>
+                                        <tr role="row" class="even" style="background-color:antiquewhite" id="totaldiv">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td style="font-weight:bold">@ViewBag.qty</td>
+                                            <td style="font-weight:bold">Total-Rs.@ViewBag.freight </td>
+                                            <td style="font-weight:bold">Total-Rs.@ViewBag.tds</td>
+                                            <td style="font-weight:bold">Total-Rs.@ViewBag.cash</td>
+                                            <td style="font-weight:bold">Total-Rs.@ViewBag.bank</td>
+                                            <td style="font-weight:bold">Total-Rs.@ViewBag.hsd</td>
+                                            <td style="font-weight:bold">Total-Rs.@ViewBag.ofc</td>
+                                            <td style="font-weight:bold">Total-Rs.@ViewBag.topaid</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                    
+                </div>
+            </div><!-- End Row-->
+        </div>
+        <div class="row pt-4 pb-3">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">Make Payment</div>
+                    <div class="card-body">
+
+                        <div class="form-row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>From Account:</label>
+                                    <input type="text" class="form-control" id="pa1" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Cheque No:</label>
+                                    <input type="text" class="form-control" id="pa2"/>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Bank/Cash:</label>
+                                    <input type="text" class="form-control" id="pa3"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>To Account:</label>
+                                    <input type="text" class="form-control" id="pa4"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Other Payment Method:</label>
+                                    <input type="text" class="form-control" id="pa5"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Payment Date:</label>
+                                    <input type="date" class="form-control" id="pa6"/>
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <button type="button" onclick="MakePayment()" class="btn btn-primary mts">Make Payment</button>
+                                    <button type="submit" class="btn btn-danger mts" onclick="location.reload()">Cancel</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End container-fluid-->
+
+    </div><!--End content-wrapper-->
+</div><!--Start Back To Top Button-->
+<a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+<!--End Back To Top Button-->
+<link href="~/assets/css/Autocomplete.css" rel="stylesheet" />
+<script src="~/assets/js/jquery.min.js"></script>
+<script src="~/assets/js/jquery_Autocomplete.js"></script>
+<script>
+    $(".c").on("input", function (evt) {
+        debugger;
+        var self = $(this);
+        self.val(self.val().replace(/[^0-9\.]/g, ''));
+        if ((evt.which != 46 || self.val().indexOf('.') != -1) && (evt.which < 48 || evt.which > 57)) {
+            evt.preventDefault();
+        }
+    });
+    function Check2(id) {
+        var self = $("#bank_" + id);
+        self.val(self.val().replace(/[^0-9\.]/g, ''));
+        if ((self.val().which != 46 || self.val().indexOf('.') != -1) && (self.val().which < 48 || self.val().which > 57)) {
+            evt.preventDefault();
+        }
+    }
+    function Check3(id) {
+        var self = $("#hsd_" + id);
+        self.val(self.val().replace(/[^0-9\.]/g, ''));
+        if ((self.val().which != 46 || self.val().indexOf('.') != -1) && (self.val().which < 48 || self.val().which > 57)) {
+            evt.preventDefault();
+        }
+    }
+    function Check4(id) {
+        var self = $("#ofcx_" + id);
+        self.val(self.val().replace(/[^0-9\.]/g, ''));
+        if ((self.val().which != 46 || self.val().indexOf('.') != -1) && (self.val().which < 48 || self.val().which > 57)) {
+            evt.preventDefault();
+        }
+    }
+    function Check1(id) {
+        debugger
+        var self = $("#cash_" + id);
+        self.val(self.val().replace(/[^0-9\.]/g, ''));
+        if ((self.val().which != 46 || self.val().indexOf('.') != -1) && (self.val().which < 48 || self.val().which > 57)) {
+            evt.preventDefault();
+        }
+    }
+    function MakePayment() {
+        debugger;
+        var data = [];
+        var tp1 = document.getElementsByClassName("tp");
+
+        if (tp1.length > 0) {
+            for (var i = 0; i < tp1.length; i++) {
+                var item = {};
+                item["Tp_Number"] = tp1[i].value;
+                item["faccount"] = $("#pa1").val();
+                item["cheque"] = $("#pa2").val();
+                item["bank"] = $("#pa3").val();
+                item["taccount"] = $("#pa4").val();
+                item["other"] = $("#pa5").val();
+                item["pdate"] = $("#pa6").val();
+                data.push(item);
+            }
+        }
+        if (data.length > 0) {
+            debugger;
+            if ($("#pa3").val() == "" && $("#pa2").val() == "" && $("#pa5").val() == "") {
+                alert("Please enter payment method");
+                return false;
+            }
+            else if ($("#pa4").val() == "") {
+                alert("Please enter to account");
+                return false;
+            }
+            else if ($("#pa6").val() == "") {
+                alert("Please enter payment date");
+                return false;
+            }
+            else {               
+                if (confirm("Are you sure want to make this payment"))
+                    $.ajax({
+                        async: false,
+                        url: "/Admin/makepayment",
+                        type: "post",
+                        dataType: "json",
+                        data: { data: data },
+                        success: function (app) {
+                            if (app == true) {
+                                alert("Payment made successfully");
+                                location.href = "/Admin/payment";
+                            }
+                        }
+                    });
+            }
+        }
+        else {
+            alert("There is no record for payment");
+            return false;
+        }
+    }
+    $("#Address").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: '/Admin/GetPAN',
+                data: "{ 'prefix': '" + request.term + "'}",
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    debugger;
+                    if (data.length < 1) {
+                        $("#Address").val('');
+                    } else {
+                        $("#Address").text('');
+                    }
+                    response($.map(data, function (item) {
+                        return item;
+                    }))
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        },
+        select: function (e, i) {
+            $("#p3").val(i.item.val);
+        },
+        minLength: 1
+    });
+    $("#p3").autocomplete({      
+        source: function (request, response) {
+            $.ajax({
+                url: '/Admin/GetOwner',
+                data: "{ 'prefix': '" + request.term + "'}",
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    debugger;
+                    if (data.length < 1) {
+                        $("#p3").val('');
+                    } else {
+                        $("#p3").text('');
+                    }
+                    response($.map(data, function (item) {
+                        return item;
+                    }))
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        },
+        select: function (e, i) {
+            $("#Address").val(i.item.val);
+            $("#paymentbody").html('');
+            $("#totaldiv").html('');
+        },
+        minLength: 1
+    });
+</script>
+
